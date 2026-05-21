@@ -8,7 +8,17 @@ const { ethers } = require("ethers");
 
 const app = express();
 
-app.use(cors());
+app.use(cors({
+  origin: [
+    "https://3nigmatic.xyz",
+    "https://www.3nigmatic.xyz",
+    "http://localhost:5173"
+  ],
+  methods: ["GET", "POST", "OPTIONS"],
+  allowedHeaders: ["Content-Type"]
+}));
+
+app.options("*", cors());
 app.use(express.json());
 
 const limiter = rateLimit({
